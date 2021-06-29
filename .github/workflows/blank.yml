@@ -23,12 +23,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name : Checkout source code
-      - uses: actions/checkout@master
+      - name: Checkout source code
+        uses: actions/checkout@master
 
       # Runs a single command using the runners shell
       - name: Set up Node.js
-        uses : actions/sctup-node@master
+        uses: actions/sctup-node@master
         with:
           node-version : 14.x
 
@@ -37,14 +37,14 @@ jobs:
         run: yarn install
 
       - name: Build page
-        run : yarn build
+        run: yarn build
         env:
           NODE_ENV: production
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
     
